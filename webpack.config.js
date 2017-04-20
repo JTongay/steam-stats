@@ -8,20 +8,23 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/app/'
     },
-    plugins: [new HtmlWebpackPlugin()],
+    plugins: [new HtmlWebpackPlugin({
+        template: './src/index.html',
+        inject: 'body'
+      })],
     module: {
         loaders: [
             {
-                test: /\.js$/,
-                include: path.resolve(__dirname, 'src'),
-                exclude: /(node_modules)/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015']
-                }
+              test: /\.js$/,
+              include: path.resolve(__dirname, 'src'),
+              exclude: /(node_modules)/,
+              loader: 'babel-loader',
+              query: {
+                  presets: ['es2015']
+              }
             },
             {
-              test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+              test: /\.(png|jpg|jpeg|gif|svg)$/,
               loader: 'file-loader'
             },
             {
@@ -29,9 +32,9 @@ module.exports = {
               loader: 'raw-loader'
             },
             {
-                test: /\.scss$/,
-                exclude: /(node_modules)/,
-                loader: 'style-loader!sass-loader'
+              test: /\.scss$/,
+              exclude: /(node_modules)/,
+              loader: 'style-loader!sass-loader'
             }
         ]
     }

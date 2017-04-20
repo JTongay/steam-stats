@@ -5,13 +5,6 @@ import routing from './routing'
 
 const app = angular.module('app', [uiRouter])
 
-app.controller('test', ['$scope', function($scope){
-
-  console.log('whassup');
-
-  $scope.view = {}
-  $scope.view.booyah = "booyah"
-
-}]).config(routing)
+app.config(routing)
 
 export default app
