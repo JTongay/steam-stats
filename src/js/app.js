@@ -1,6 +1,9 @@
 import angular from 'angular'
+import uiRouter from 'angular-ui-router'
 
-const app = angular.module('app', [])
+import routing from './routing'
+
+const app = angular.module('app', [uiRouter])
 
 app.controller('test', ['$scope', function($scope){
 
@@ -9,9 +12,6 @@ app.controller('test', ['$scope', function($scope){
   $scope.view = {}
   $scope.view.booyah = "booyah"
 
-}]).component('home', {
-  template: `<h1>Hello There from the home component. {{$ctrl.user.name}}</h1>`,
-  controller: function(){
-    this.user = {name: "World"}
-  }
-})
+}]).config(routing)
+
+export default app
