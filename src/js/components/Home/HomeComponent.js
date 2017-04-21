@@ -1,4 +1,4 @@
-import app from '../../app'
+// import app from '../../app'
 
 // app.component('home', {
 //   template: `<h1>Hello There from the home component. {{$ctrl.user.name}}</h1>`,
@@ -16,10 +16,15 @@ export default class HomeComponent {
 
   constructor($scope, testService, testService2){
     this.name = "Hello there"
+    this.testService = testService
   }
 
   changeName(){
     this.name = "Hello there got changed to this"
+  }
+
+  logIt(){
+    this.testService.doIt()
   }
 
 }
