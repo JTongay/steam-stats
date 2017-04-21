@@ -10,10 +10,11 @@ import app from '../../app'
 // export default app
 
 import testService from '../../services/testService'
+import testService2 from '../../services/testService2'
 
 export default class HomeComponent {
 
-  constructor($scope, testService){
+  constructor($scope, testService, testService2){
     this.name = "Hello there"
   }
 
