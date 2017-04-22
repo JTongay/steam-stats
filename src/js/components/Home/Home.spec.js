@@ -12,12 +12,9 @@ describe('Landing Page Tests', function () {
     browser.get('http://localhost:1234')
   })
 
-  // beforeEach(angular.module('app', []))
-
   it('should pass the test', function () {
     expect(true).toBe(true);
   })
-
   it('should greet the user', function () {
     expect(homeComponent.name).toBe(`Hello there`);
   })
