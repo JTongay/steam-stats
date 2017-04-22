@@ -1,10 +1,7 @@
-const App = {
+export default class AppComponent {
 
-  template: require('./app.component.html'),
-  controller: function(){
-    console.log("booyah");
+  constructor(){
+    
   }
 
 }
-
-module.exports = App
