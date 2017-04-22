@@ -9,3 +9,4 @@ angular.module('app', [uiRouter])
        .config(routing)
        .service('testService',testService)
        .service('testService2',testService2)
+       .name

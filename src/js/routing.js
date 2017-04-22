@@ -7,7 +7,20 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
     url: '/',
     template: require('./components/Home/Home.html'),
     controller: HomeComponent,
-    controllerAs: 'home'
+    controllerAs: 'home',
+    resolve: {
+      pokemon: ['$http', function($http){
+      $http.get("http://pokeapi.co/api/v2/pokemon/1")
+            .then((res)=>{
+              console.log(res.data);
+              return res
+            })
+            .catch((err)=>{
+              console.log(err);
+              return err
+            })
+    }]
+    }
   })
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
