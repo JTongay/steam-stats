@@ -24,7 +24,7 @@ module.exports = {
               }
             },
             {
-              test: /\.(png|jpg|jpeg|gif|svg)$/,
+              test: /\.(png|jpg|jpeg|gif|svg|eot|woff2|woff|ttf)$/,
               loader: 'file-loader'
             },
             {
@@ -35,6 +35,10 @@ module.exports = {
               test: /\.scss$/,
               exclude: /(node_modules)/,
               loader: 'style-loader!sass-loader'
+            },
+            {
+              test: /\.css$/,
+              loader: 'style-loader!css-loader'
             }
         ]
     }
