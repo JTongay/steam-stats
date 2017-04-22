@@ -8,4 +8,4 @@ function TestService(){
 
 }
 
-module.exports = TestService
+export default TestService
