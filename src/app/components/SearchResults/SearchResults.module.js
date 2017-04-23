@@ -6,7 +6,7 @@ const Search = {
   template: require('./SearchResults.html'),
   controller: SearchResults,
   bindings: {
-    results: '<'
+    results: '='
   }
 }
 
