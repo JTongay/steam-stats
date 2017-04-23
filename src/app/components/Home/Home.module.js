@@ -1,9 +1,14 @@
+import angular from 'angular'
+
 import HomeController from './Home.component'
 
-const HomeModule = {
+const Home = {
   template: require('./Home.html'),
-  controller: HomeController,
-  bindings: {
-    home: '<'
-  }
+  controller: HomeController
 }
+
+const HomeModule = angular.module('home', [])
+                    .component('home', Home)
+                    .name
+
+module.exports = Home
