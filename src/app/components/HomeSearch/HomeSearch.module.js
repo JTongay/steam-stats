@@ -4,7 +4,10 @@ import HomeSearchComponent from './HomeSearch.component'
 
 const HomeSearch = {
   template: require('./HomeSearch.html'),
-  controller: HomeSearchComponent
+  controller: HomeSearchComponent,
+  bindings: {
+    searchIt: '<'
+  }
 }
 
 const HomeSearchModule = angular.module('homeSearch', [])

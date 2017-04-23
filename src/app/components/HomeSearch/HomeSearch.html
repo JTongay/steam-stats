@@ -1,5 +1,7 @@
 <form action="">
   <label for="game-search">Search for a damn game</label>
-  <input type="text" id="game-search">
+  <input type="text" id="game-search" ng-model="searchIt">
   <input type="submit" name="" value="Search!">
 </form>
+
+<search-results ng-if="searchIt" results=searchIt></search-results>
