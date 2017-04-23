@@ -1,14 +1,13 @@
 import angular from 'angular'
-import HomeComponent from './Home/Home.component'
+
+import HomeModule from './Home/Home.module'
+import HomeSearchModule from './HomeSearch/HomeSearch.module'
 
 const ComponentsModule = angular.module('app.components', [])
-                                .component('home', {
-                                  template: require('./Home/Home.html'),
-                                  controller: HomeComponent,
-                                  bindings: {
-                                    home: '<'
-                                  }
-                                })
-                                .name
+                                    .component('home', HomeModule)
+                                    .component('homeSearch', HomeSearchModule)
+                                    .name
 
+console.log(HomeSearchModule);
+console.log(HomeModule);
 module.exports = ComponentsModule
