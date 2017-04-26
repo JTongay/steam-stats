@@ -1,7 +1,8 @@
 export default class HomeSearch {
 
-  constructor(){
-    console.log("HomeSearch component");
+  constructor($http){
+    '$inject'
+    this._$http = $http
   }
 
 }

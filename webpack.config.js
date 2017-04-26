@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, 'src') + '/app/app.module.js',
@@ -8,10 +9,16 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/app/'
     },
-    plugins: [new HtmlWebpackPlugin({
+    plugins: [
+      new HtmlWebpackPlugin({
         template: './src/index.html',
         inject: 'body'
-      })],
+      }),
+      new DotenvPlugin({
+        sample: './.env.default',
+        path: './.env'
+      })
+    ],
     module: {
         loaders: [
             {

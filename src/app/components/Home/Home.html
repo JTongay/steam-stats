@@ -1,4 +1,9 @@
 <div class="jumbotron">
   <h1>Check out your favorite Steam Game!</h1>
 </div>
-<home-search></home-search>
+<h1>Search for yourself</h1>
+<form action="">
+  <input type="text" ng-model="user">
+  <input type="submit" ng-click="home.searchForUser($event, user)">
+</form>
+<!-- <home-search></home-search> -->
