@@ -12,7 +12,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname + 'dist')))
 
 app.get('/', (req, res)=>{
-  res.sendFile('app/index.html')
+  console.log(__dirname);
+  res.sendFile(path.join(__dirname + '/dist/app/index.html'))
 })
 
 app.listen(port, function () {
