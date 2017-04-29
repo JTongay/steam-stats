@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 const path = require('path')
+const passport = require('passport')
+const SteamStrategy = require('passport-steam').Strategy
+require('dotenv').config();
 
 // Middlewares
 const bodyParser = require('body-parser')
@@ -11,8 +14,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('dist'))
 
+//passport
+passport.use(new SteamStrategy({
+    returnURL: 'http://localhost:3000/auth/steam/return',
+    realm: 'http://localhost:3000/',
+    provider: 'http://steamcommunity.com/openid',
+    apiKey: process.env.STEAM_API_KEY
+  },
+  function(identifier, profile, done) {
+    console.log(identifier);
+    console.log(profile);
+    done()
+  }
+));
+
+console.log(passport);
+
 app.get('/', (req, res)=>{
   res.sendFile(path.join(__dirname + '/dist/app/index.html'))
+})
+
+app.get('/auth/steam', passport.authenticate('steam'), (req, res)=>{
+
+
+
 })
 
 app.listen(port, function () {
