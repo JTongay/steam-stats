@@ -9,12 +9,10 @@ const bodyParser = require('body-parser')
 // Use Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname + 'dist')))
+app.use(express.static('dist'))
 
 app.get('/', (req, res)=>{
-  console.log(__dirname);
-  res.sendFile(path.join(__dirname + '/dist/app/index.html')
-  res.sendFile(path.join(__dirname + '/dist/app/bundle.js'))
+  res.sendFile(path.join(__dirname + '/dist/app/index.html'))
 })
 
 app.listen(port, function () {
