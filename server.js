@@ -24,11 +24,12 @@ passport.use(new SteamStrategy({
   function(identifier, profile, done) {
     console.log(identifier);
     console.log(profile);
+    console.log(done);
     done()
   }
 ));
 
-console.log(passport);
+console.log(passport.use());
 
 app.get('/', (req, res)=>{
   res.sendFile(path.join(__dirname + '/dist/app/index.html'))
