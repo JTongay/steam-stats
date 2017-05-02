@@ -24,12 +24,10 @@ passport.use(new SteamStrategy({
   function(identifier, profile, done) {
     console.log(identifier);
     console.log(profile);
-    console.log(done);
-    done()
+    return done();
   }
 ));
 
-console.log(passport.use());
 
 app.get('/', (req, res)=>{
   res.sendFile(path.join(__dirname + '/dist/app/index.html'))
@@ -37,9 +35,17 @@ app.get('/', (req, res)=>{
 
 app.get('/auth/steam', passport.authenticate('steam'), (req, res)=>{
 
-
+  console.log(res, "res");
+  res.json(res)
 
 })
+
+app.get('/auth/steam/return',
+  passport.authenticate('steam', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 app.listen(port, function () {
   console.log('hello from', port);
