@@ -1,8 +1,8 @@
 import HomeComponent from './components/Home/Home.component'
 
-routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$q', '$location'];
 
-export default function routing($stateProvider, $urlRouterProvider, $locationProvider) {
+export default function routing($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $q, $location) {
   $stateProvider.state('home', {
     url: '/',
     template: require('./components/Home/Home.html'),
@@ -24,4 +24,17 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
   })
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
+  $httpProvider.interceptors.push(function($q, $location) {
+      return {
+        response: function(response) {
+          // do something on success
+          return response;
+        },
+        responseError: function(response) {
+          if (response.status === 401)
+            $location.url('/login');
+          return $q.reject(response);
+        }
+      };
+    });
 }
