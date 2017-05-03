@@ -16,21 +16,15 @@ app.use(express.static('dist'))
 
 //passport
 passport.use(new SteamStrategy({
-    returnURL: 'http://localhost:3000/',
+    returnURL: 'http://localhost:3000/auth/steam/return',
     realm: 'http://localhost:3000/',
     provider: 'http://steamcommunity.com/openid',
     apiKey: process.env.STEAM_API_KEY
   },
   function(identifier, profile, done) {
-    process.nextTick(function () {
-
-      // To keep the example simple, the user's Steam profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Steam account with a user record in your database,
-      // and return that user instead.
-      profile.identifier = identifier;
-      return done(null, profile);
-    });
+    console.log(identifier);
+    console.log(profile);
+    return done(profile)
   }
 ));
 
@@ -41,8 +35,8 @@ app.get('/', (req, res)=>{
 
 app.get('/auth/steam', passport.authenticate('steam'), (req, res)=>{
 
-  // console.log(res, "boooooooyaaaarrrrrrr");
-  // res.json(res)
+  console.log(res, "boooooooyaaaarrrrrrr");
+  res.json(res)
 
 })
 
