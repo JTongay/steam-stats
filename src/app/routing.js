@@ -10,7 +10,7 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
     controllerAs: 'home',
     resolve: {
       pokemon: ['$http', '$state', function($http, $state){
-        return $http.get("/auth/steam/return")
+        return $http.get("/auth/steam/")
             .then((res)=>{
               console.log(res.data);
               $state.go('home')
