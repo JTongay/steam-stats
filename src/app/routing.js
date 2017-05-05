@@ -9,15 +9,15 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
     controller: HomeComponent,
     controllerAs: 'home',
     resolve: {
-      pokemon: ['$http', '$state', function($http, $state){
+      steamUser: ['$http', '$state', function($http, $state){
         return $http.get("/auth/steam/")
             .then((res)=>{
-              console.log(res.data);
-              $state.go('home')
+              console.log(res, "in the front end");
+              // $state.go('home')
               return res
             })
             .catch((err)=>{
-              console.log(err, "error");
+              console.log(err, "error in the front end");
               return err
             })
           }]
@@ -25,18 +25,18 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
   })
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
-  $httpProvider.interceptors.push(function($location) {
-      return {
-        response: function(response) {
-          // do something on success
-          console.log(response, "front end");
-          return response;
-        },
-        responseError: function(response) {
-          if (response.status === 401)
-            $location.url('/');
-          return response;
-        }
-      };
-    });
+  // $httpProvider.interceptors.push(function($location) {
+  //     return {
+  //       response: function(response) {
+  //         // do something on success
+  //         console.log(response, "front end");
+  //         return response;
+  //       },
+  //       responseError: function(response) {
+  //         if (response.status === 401)
+  //           $location.url('/');
+  //         return response;
+  //       }
+  //     };
+  //   });
 }

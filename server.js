@@ -13,18 +13,29 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('dist'))
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 //passport
 passport.use(new SteamStrategy({
     returnURL: 'http://localhost:3000/auth/steam/return',
     realm: 'http://localhost:3000/',
+    stateless: true,
     provider: 'http://steamcommunity.com/openid',
     apiKey: process.env.STEAM_API_KEY
   },
   function(identifier, profile, done) {
-    console.log(identifier);
-    console.log(profile);
-    return done(profile)
+    console.log(identifier, "ident");
+    console.log(profile, "profile");
+    return done(null, profile)
   }
 ));
 
@@ -33,15 +44,19 @@ app.get('/', (req, res)=>{
   res.sendFile(path.join(__dirname + '/dist/app/index.html'))
 })
 
-app.get('/auth/steam', passport.authenticate('steam'), (req, res)=>{
-
-  console.log(res, "boooooooyaaaarrrrrrr");
-  res.json(res)
-
-})
+app.get('/auth/steam',
+  passport.authenticate('steam'),
+  function(req, res) {
+    // The request will be redirected to Steam for authentication, so
+    // this function will not be called.
+  });
 
 app.get('/auth/steam/return',
-  passport.authenticate('steam', { failureRedirect: '/' }),
+  passport.authenticate('steam', {
+    successRedirect: '/',
+    failureRedirect: '/',
+    session: false
+  }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
