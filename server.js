@@ -4,7 +4,24 @@ const port = process.env.PORT || 3000
 const path = require('path')
 const passport = require('passport')
 const SteamStrategy = require('passport-steam').Strategy
+const mongoose = require('mongoose')
 require('dotenv').config();
+
+//mongo connection
+
+//es6 promises
+mongoose.Promise = global.Promise;
+
+//Connect to MongoDB
+mongoose.connect("mongodb://localhost/testaroo");
+
+mongoose.connection.once('open', function(){
+    console.log('Connection has been made, now make fireworks');
+  }).on('error', function(err) {
+    console.log('Connection error:', err);
+  })
+
+const User = require('./server/models/User.model')
 
 // Middlewares
 const bodyParser = require('body-parser')
@@ -35,7 +52,11 @@ passport.use(new SteamStrategy({
   function(identifier, profile, done) {
     console.log(identifier, "ident");
     console.log(profile, "profile");
-    return done(null, profile)
+    let steamId = identifier.match(/\d+$/)[0]
+    console.log(steamId);
+    User.findOne({ steamID: steamId }, function (err, user) {
+     return done(err, user);
+   });
   }
 ));
 
@@ -55,7 +76,7 @@ app.get('/auth/steam/return',
   passport.authenticate('steam', {
     successRedirect: '/',
     failureRedirect: '/',
-    session: false
+    session: true
   }),
   function(req, res) {
     // Successful authentication, redirect home.
