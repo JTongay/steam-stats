@@ -50,11 +50,16 @@ passport.use(new SteamStrategy({
     apiKey: process.env.STEAM_API_KEY
   },
   function(identifier, profile, done) {
-    console.log(identifier, "ident");
-    console.log(profile, "profile");
     let steamId = identifier.match(/\d+$/)[0]
-    console.log(steamId);
     User.findOne({ steamID: steamId }, function (err, user) {
+      if(!user){
+        let newUser = new User({steamID: steamId})
+        newUser.save(steamId, (e, usr)=>{
+          console.log(e, "error saving user");
+          console.log(usr, "user saving user");
+          return done(usr)
+        })
+      }
      return done(err, user);
    });
   }
