@@ -55,8 +55,6 @@ passport.use(new SteamStrategy({
       if(!user){
         let newUser = new User({steamID: steamId})
         newUser.save(steamId, (e, usr)=>{
-          console.log(e, "error saving user");
-          console.log(usr, "user saving user");
           return done(usr)
         })
       }
