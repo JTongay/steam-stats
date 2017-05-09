@@ -3,7 +3,7 @@ import testService2 from '../../services/testService2'
 
 export default class HomeComponent {
 
-  constructor(steamSearchService, steamUser){
+  constructor(steamSearchService){
     '$inject'
     this._steamSearchService = steamSearchService
     this.setUserID = null
