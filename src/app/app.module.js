@@ -5,16 +5,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import routing from './routing'
 import AppConfig from './app.config'
 import ComponentsModule from './components/components.module'
-import testService from './services/testService'
-import testService2 from './services/testService2'
+
+//services
 import steamSearchService from './services/steamSearch.service'
+import loginService from './services/login.service'
 
 // require('dotenv').config()
 
 export const AppModule = angular.module('app', [uiRouter, ComponentsModule])
        .component('app', AppConfig)
        .config(routing)
-       .service('testService',testService)
-       .service('testService2',testService2)
        .service('steamSearchService', steamSearchService)
+       .service('login', loginService)
        .name
