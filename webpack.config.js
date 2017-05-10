@@ -40,8 +40,8 @@ module.exports = {
             },
             {
               test: /\.scss$/,
-              exclude: /(node_modules)/,
-              loader: 'style-loader!css-loader!sass-loader!'
+              // exclude: /(node_modules)/,
+              loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
             },
             {
               test: /\.css$/,

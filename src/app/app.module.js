@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import routing from './routing'
 import AppConfig from './app.config'
 import ComponentsModule from './components/components.module'
+// require('./components/LoginForm/LoginForm.scss')
+
 
 //services
 import steamSearchService from './services/steamSearch.service'
