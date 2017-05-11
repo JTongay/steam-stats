@@ -1,9 +1,9 @@
 <h3>Login Form yo</h3>
-<form class="" method="post">
+<form class="" method="post" ng-submit="$ctrl.sendLogin(username, password)">
   <label for="">Username:</label>
-  <input type="text" class="fields">
+  <input type="text" class="fields" ng-model="username">
   <label for="">Password:</label>
-  <input type="password" class="fields">
+  <input type="password" class="fields" ng-model="password">
   <input type="submit" value="Log In">
   <button>Sign Up</button>
 </form>

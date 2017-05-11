@@ -3,9 +3,11 @@ const app = express()
 const port = process.env.PORT || 3000
 const path = require('path')
 const passport = require('passport')
+const jwt = require('jsonwebtoken')
 const SteamStrategy = require('passport-steam').Strategy
 const mongoose = require('mongoose')
 require('dotenv').config();
+const loginRoutes = require('./server/routes/login.routes')
 
 //mongo connection
 
@@ -32,6 +34,9 @@ app.use(bodyParser.json());
 app.use(express.static('dist'))
 app.use(passport.initialize());
 app.use(passport.session());
+
+//use dem routes
+app.use(loginRoutes)
 
 passport.serializeUser(function(user, done) {
   done(null, user);
