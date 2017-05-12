@@ -7,7 +7,7 @@ const router = express.Router({
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const User = require('../models/User.model')
-const bcrypt = require('bcrypt-nodejs')
+const scrypt = require('scrypt')
 
 router.post('/signup', (req, res, next)=>{
   let reqUsername = req.body.user
@@ -26,11 +26,12 @@ router.post('/signup', (req, res, next)=>{
       res.json({status: "You fucked up"})
       return
     }
-    bcrypt.hash(reqPassword, 12, function(err, hashedPass){
-      User.create({username: reqUsername, password: hashedPass, steamID: null}).then((usr)=>{
+    scrypt.kdf(reqPassword, {N: 1, r:1, p:1}, function(err, result){
+      console.log(result.toString("base64"));
+      User.create({username: reqUsername, password: result, steamID: null}).then((usr)=>{
         res.json(usr)
       })
-    })
+    });
   })
 
 })
