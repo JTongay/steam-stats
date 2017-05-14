@@ -20,6 +20,7 @@ export default class LoginService {
     return this._$http.post('/login', {user: username, pass: password}).then((res, err)=>{
       console.log(res);
       console.log(err);
+      return res
     })
   }
 
