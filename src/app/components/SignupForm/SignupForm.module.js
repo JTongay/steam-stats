@@ -1,10 +1,10 @@
 import angular from 'angular'
 
-import LoginFormComponent from './LoginForm.component'
+import SignupFormComponent from './SignupForm.component'
 
-const Login = {
-  template: require('./LoginForm.html'),
-  controller: LoginFormComponent
+const SignupForm = {
+  template: require('./SignupForm.html'),
+  controller: SignupFormComponent
 }
 
-module.exports = Login
+module.exports = SignupForm

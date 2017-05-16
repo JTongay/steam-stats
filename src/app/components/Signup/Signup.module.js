@@ -8,7 +8,7 @@ const Signup = {
 }
 
 const SignupModule = angular.module('signup', [])
-                           .component('signup', signup)
+                           .component('signup', Signup)
                            .name
 
 module.exports = Signup

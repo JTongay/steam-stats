@@ -1,16 +1,27 @@
 import HomeComponent from './components/Home/Home.component'
 import LoginComponent from './components/Login/Login.component'
+import SignupComponent from './components/Signup/Signup.component'
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
 
 export default function routing($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+
   const login = {
     url: '/login',
     template: require('./components/Login/Login.html'),
     controller: LoginComponent,
     controllerAs: 'login'
   }
+
+  const signup = {
+    url: '/signup',
+    template: require('./components/Signup/Signup.html'),
+    controller: SignupComponent,
+    controllerAs: 'signup'
+  }
+
   $stateProvider.state('login', login)
+  $stateProvider.state('signup', signup)
   $stateProvider.state('home', {
     url: '/',
     template: require('./components/Home/Home.html'),
