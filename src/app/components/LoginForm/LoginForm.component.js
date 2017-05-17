@@ -8,7 +8,7 @@ export default class LoginFormComponent {
   }
 
   sendLogin(usr, pass){
-    return this._login.handleSignup(usr, pass)
+    return this._login.handleLogin(usr, pass)
   }
 
 }

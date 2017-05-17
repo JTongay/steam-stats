@@ -7,8 +7,8 @@ export default class SignupFormComponent {
     this._login = login
   }
 
-  // sendLogin(usr, pass){
-  //   return this._login.handleSignup(usr, pass)
-  // }
+  sendSignup(usr, pass){
+    return this._login.handleSignup(usr, pass)
+  }
 
 }
