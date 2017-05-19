@@ -40,6 +40,14 @@ router.post('/login', (req, res, next)=>{
   console.log(req.body);
   console.log(reqUsername);
   console.log(reqPassword);
+  User.findOne({username: reqUsername}).then((err, user)=>{
+
+    if(err){
+      console.log(err, "error")
+      
+    }
+
+  })
 
 })
 
