@@ -34,9 +34,12 @@ router.post('/signup', (req, res, next)=>{
 })
 
 router.post('/login', (req, res, next)=>{
-
   let reqUsername = req.body.user
   let reqPassword = req.body.pass
+  let scryptParams = scrypt.paramsSync(0.1)
+  console.log("scryptParams", scryptParams);
+  let kdfResult = scrypt.kdfSync(reqPassword, scryptParams)
+  console.log("kdfResult", kdfResult);
   console.log(req.body);
   console.log(reqUsername);
   console.log(reqPassword);
@@ -44,8 +47,26 @@ router.post('/login', (req, res, next)=>{
 
     if(err){
       console.log(err, "error")
-      
+      res.json(err)
+      return
     }
+
+    if(user){
+      console.log("user fuck up", user);
+      res.json({status: "You fucked up"})
+      return
+    }
+
+    console.log(user)
+
+    scrypt.verifyKdf(kdfResult, reqPassword).then((res)=>{
+        console.log("res", res);
+
+    },
+    (err)=>{
+        console.log("err", err);
+      
+    })
 
   })
 
