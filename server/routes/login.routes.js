@@ -37,19 +37,16 @@ router.post('/login', (req, res, next)=>{
   let reqUsername = req.body.user
   let reqPassword = req.body.pass
   let scryptParams = scrypt.paramsSync(0.1)
-  console.log("scryptParams", scryptParams);
   let kdfResult = scrypt.kdfSync(reqPassword, scryptParams)
+  console.log("scryptParams", scryptParams);
   console.log("kdfResult", kdfResult);
-  console.log(req.body);
-  console.log(reqUsername);
-  console.log(reqPassword);
   User.findOne({username: reqUsername}).then((err, user)=>{
 
-    if(err){
-      console.log(err, "error")
-      res.json(err)
-      return
-    }
+    // if(err){
+    //   console.log(err, "error")
+    //   res.json(err)
+    //   return
+    // }
 
     if(user){
       console.log("user fuck up", user);
@@ -60,12 +57,10 @@ router.post('/login', (req, res, next)=>{
     console.log(user)
 
     scrypt.verifyKdf(kdfResult, reqPassword).then((res)=>{
-        console.log("res", res);
+        console.log("Passwords Match", res);
 
-    },
-    (err)=>{
-        console.log("err", err);
-      
+    },(err)=>{
+        console.log("Passwords Don't Match", err);
     })
 
   })
