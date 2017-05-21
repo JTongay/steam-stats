@@ -22,6 +22,7 @@
     "express": "^4.15.2",
     "jsonwebtoken": "^7.4.0",
     "mongoose": "^4.9.7",
+    "ngstorage": "^0.3.11",
     "passport": "^0.3.2",
     "passport-oauth": "^1.0.0",
     "passport-steam": "^1.0.8",

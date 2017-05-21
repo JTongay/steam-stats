@@ -38,11 +38,22 @@ router.post('/login', (req, res, next)=>{
   User.findOne({username: reqUsername}).then((user, err)=>{
     if(err){
       console.log(err, "error")
+    } else {
+      bcrypt.compare(reqPassword, user.password, (err, pass)=>{
+        if(pass){
+          let token = jwt.sign({id: user._id.toString()}, process.env.SECRET, {expiresIn: '2h'})
+          res.json({
+            token: token,
+            id: user._id.toString()
+          })
+        } else {
+          res.status(422).json({
+            status: "password incorrect"
+          })
+        }
+      })
     }
 
-    bcrypt.compare(reqPassword, user.password, (err, pass)=>{
-      console.log(pass, "password verification")
-    })
     
   })
 

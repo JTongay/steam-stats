@@ -1,20 +1,17 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
+import 'ngstorage'
 import 'bootstrap/dist/css/bootstrap.css';
 
 import routing from './routing'
 import AppConfig from './app.config'
 import ComponentsModule from './components/components.module'
-// require('./components/LoginForm/LoginForm.scss')
-
 
 //services
 import steamSearchService from './services/steamSearch.service'
 import loginService from './services/login.service'
 
-// require('dotenv').config()
-
-export const AppModule = angular.module('app', [uiRouter, ComponentsModule])
+export const AppModule = angular.module('app', [uiRouter, 'ngStorage', ComponentsModule])
        .component('app', AppConfig)
        .config(routing)
        .service('steamSearchService', steamSearchService)
