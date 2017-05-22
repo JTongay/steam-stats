@@ -6,8 +6,9 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const SteamStrategy = require('passport-steam').Strategy
 const mongoose = require('mongoose')
-require('dotenv').config();
 const loginRoutes = require('./server/routes/login.routes')
+let loggedInSteamUser = null
+require('dotenv').config();
 
 //mongo connection
 
@@ -56,6 +57,7 @@ passport.use(new SteamStrategy({
   },
   function(identifier, profile, done) {
     let steamId = identifier.match(/\d+$/)[0]
+    loggedInSteamUser = profile
     User.findOne({ steamID: steamId }, function (err, user) {
       if(!user){
         let newUser = new User({steamID: steamId})
@@ -69,7 +71,7 @@ passport.use(new SteamStrategy({
 ));
 
 
-app.get('/*', (req, res)=>{
+app.get('/', (req, res)=>{
   res.sendFile(path.join(__dirname + '/dist/app/index.html'))
 })
 
@@ -78,7 +80,7 @@ app.get('/auth/steam',
   function(req, res) {
     // The request will be redirected to Steam for authentication, so
     // this function will not be called.
-  });
+});
 
 app.get('/auth/steam/return',
   passport.authenticate('steam', {
@@ -89,7 +91,15 @@ app.get('/auth/steam/return',
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
-  });
+});
+
+app.get('/auth/steam/checkuser', (req, res, next)=>{
+
+  res.json(loggedInSteamUser)
+
+})
+
+
 
 app.listen(port, function () {
   console.log('hello from', port);
