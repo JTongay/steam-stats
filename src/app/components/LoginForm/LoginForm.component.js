@@ -2,10 +2,11 @@ require('./LoginForm.scss')
 
 export default class LoginFormComponent {
 
-  constructor(login, $localStorage){
+  constructor(login, $localStorage, $state){
     '$inject'
     this._login = login
     this._$localStorage = $localStorage
+    this._$state = $state
   }
 
   sendLogin(usr, pass){
@@ -15,6 +16,7 @@ export default class LoginFormComponent {
     		console.log("you fucked this up")
     	} else {
     		this._$localStorage.$default(res.data)
+        this._$state.go('home')
     	}
 
     })

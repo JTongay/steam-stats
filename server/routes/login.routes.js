@@ -44,6 +44,7 @@ router.post('/login', (req, res, next)=>{
           let token = jwt.sign({id: user._id.toString()}, process.env.SECRET, {expiresIn: '2h'})
           res.json({
             token: token,
+            steamID: "",
             id: user._id.toString()
           })
         } else {
@@ -55,6 +56,30 @@ router.post('/login', (req, res, next)=>{
     }
 
     
+  })
+
+})
+
+// router.get('/user', (req, res, next)=>{
+
+//   let reqUsername = req.body.username
+//   User.findOne({username: reqUsername}).then((user, err)=>{
+
+//   })
+
+// })
+
+router.put('/add-steam', (req, res, next)=>{
+
+  let reqUsername = req.body.user
+  let reqSteamId = req.body.steamID
+  User.findOneAndUpdate({username: req.body.user}, {steamID: reqSteamId}).then((user, err)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(user)
+    }
+
   })
 
 })

@@ -26,21 +26,26 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
     url: '/',
     template: require('./components/Home/Home.html'),
     controller: HomeComponent,
-    controllerAs: 'home'
-    // resolve: {
-    //   steamUser: ['$http', '$state', function($http, $state){
-    //     return $http.get("/auth/steam/checkuser")
-    //         .then((res)=>{
-    //           console.log(res, "in the front end");
-    //           // $state.go('home')
-    //           return res
-    //         })
-    //         .catch((err)=>{
-    //           console.log(err, "error in the front end");
-    //           return err
-    //         })
-    //       }]
-    // }
+    controllerAs: 'home',
+    resolve: {
+      steamUser: ['$http', '$state', '$localStorage', function($http, $state, $localStorage){
+       if(!$localStorage.steamID){
+        return $http.get("/auth/steam/checkuser")
+            .then((res)=>{
+              console.log(res, "in the front end");
+              // $state.go('home')
+              $localStorage.$default({steamID: res.data.id})
+              return res
+            })
+            .catch((err)=>{
+              console.log(err, "error in the front end");
+              return err
+            })
+        } else {
+
+        }
+      }]
+    }
   })
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');

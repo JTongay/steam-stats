@@ -5,6 +5,18 @@ export default class steamSearch {
     this._$http = $http
   }
 
+  getUserInfo(){
+    return this._$http({
+      method: "GET",
+      url: "/auth/steam/checkuser"
+    }).then((res)=>{
+      return res
+    }).catch((err)=>{
+      console.log(err, "error")
+      return err
+    })
+  }
+
   getUserId(user){
     return this._$http({
       method: "GET",
