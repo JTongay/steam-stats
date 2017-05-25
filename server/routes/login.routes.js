@@ -55,18 +55,22 @@ router.post('/login', (req, res, next)=>{
       })
     }
 
-    
+
   })
 
 })
 
-router.get('/user', (req, res, next)=>{
+router.post('/user', (req, res, next)=>{
 
   let reqID = req.body.userID
-  User.findOne({_id: reqID}).then((user, err)=>{
+  console.log(reqID.toString());
+  console.log(req.body);
+  User.findOne({_id: reqID.toString()}).then((user, err)=>{
     if(err){
+      console.log(err);
       res.json(err)
     } else {
+      console.log(user);
       res.json(user)
     }
   })
@@ -76,11 +80,14 @@ router.get('/user', (req, res, next)=>{
 router.put('/add-steam', (req, res, next)=>{
 
   let reqID = req.body.userID
-  let reqSteamId = req.body.steamID
-  User.findOneAndUpdate({_id: reqID}, {steamID: reqSteamId}).then((user, err)=>{
+  let reqSteamID = req.body.steamID
+  console.log(reqID)
+  console.log(reqSteamID)
+  User.findOneAndUpdate({_id: reqID}, {steamID: reqSteamID}).then((user, err)=>{
     if(err){
       console.log(err)
     } else {
+      console.log(user)
       res.json(user)
     }
 

@@ -1,11 +1,14 @@
 export default class HomeComponent {
 
-  constructor(steamSearchService, steamUser){
+  constructor(steamSearchService, $localStorage, user){
     '$inject'
     this._steamSearchService = steamSearchService
     this.setUserID = null
-    this.steamUser = steamUser
-    console.log(this.steamUser)
+    // this.steamUser = steamUser
+    // console.log(this.steamUser)
+    console.log(user);
+    this.steamUser = user.getUser($localStorage.id)
+    console.log(steamUser)
   }
 
   searchForUser(e,user){

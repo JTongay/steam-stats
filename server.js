@@ -59,12 +59,12 @@ passport.use(new SteamStrategy({
     let steamId = identifier.match(/\d+$/)[0]
     loggedInSteamUser = profile
     User.findOne({ steamID: steamId }, function (err, user) {
-      if(!user){
-        let newUser = new User({steamID: steamId})
-        newUser.save(steamId, (e, usr)=>{
-          return done(usr)
-        })
-      }
+      // if(!user){
+      //   let newUser = new User({steamID: steamId})
+      //   newUser.save(steamId, (e, usr)=>{
+      //     return done(usr)
+      //   })
+      // }
      return done(err, user);
    });
   }

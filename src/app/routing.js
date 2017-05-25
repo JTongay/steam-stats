@@ -37,7 +37,11 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
               $localStorage.steamID = res.data.id
               $http({
                 method: "PUT",
-                url: "/add-steam"
+                url: "/add-steam",
+                data: {
+                  userID: $localStorage.id,
+                  steamID: res.data.id
+                }
               }).then((user)=>{
                 return user
               }).catch((err)=>{
