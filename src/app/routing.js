@@ -34,12 +34,20 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
             .then((res)=>{
               console.log(res, "in the front end");
               // $state.go('home')
-              $localStorage.$default({steamID: res.data.id})
-              return res
+              $localStorage.steamID = res.data.id
+              $http({
+                method: "PUT",
+                url: "/add-steam"
+              }).then((user)=>{
+                return user
+              }).catch((err)=>{
+                return err
+              })
+              // return res
             })
             .catch((err)=>{
               console.log(err, "error in the front end");
-              return err
+              // return err
             })
         } else {
 
