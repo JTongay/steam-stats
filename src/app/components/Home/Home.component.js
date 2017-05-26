@@ -5,10 +5,11 @@ export default class HomeComponent {
     this._steamSearchService = steamSearchService
     this.setUserID = null
     // this.steamUser = steamUser
-    // console.log(this.steamUser)
-    console.log(user);
-    this.steamUser = user.getUser($localStorage.id)
-    console.log(steamUser)
+    this.user = user
+    this.user.getUser($localStorage.id).then((usr, err)=>{
+      this.currentUser = usr
+    })
+    console.log(this.user, "user info")
   }
 
   searchForUser(e,user){

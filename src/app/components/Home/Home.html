@@ -6,7 +6,7 @@
   <input type="text" ng-model="user">
   <input type="submit" ng-click="home.searchForUser($event, user)">
 </form>
-<div ng-if="home.steamUser">
-	<h1>{{home.steamUser.displayName}} with id {{home.steamUser.id}}</h1>	
+<div ng-if="home.currentUser">
+	<h1>{{home.currentUser.username}} with id {{home.currentUser.steamID}}</h1>	
 </div>
 <!-- <home-search></home-search> -->

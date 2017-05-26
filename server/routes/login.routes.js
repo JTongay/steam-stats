@@ -60,12 +60,12 @@ router.post('/login', (req, res, next)=>{
 
 })
 
-router.post('/user', (req, res, next)=>{
+router.get('/user/:id', (req, res, next)=>{
 
-  let reqID = req.body.userID
-  console.log(reqID.toString());
-  console.log(req.body);
-  User.findOne({_id: reqID.toString()}).then((user, err)=>{
+  let reqID = req.params.id
+  console.log(reqID);
+  console.log(req.params);
+  User.findOne({_id: reqID}).then((user, err)=>{
     if(err){
       console.log(err);
       res.json(err)

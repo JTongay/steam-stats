@@ -8,12 +8,15 @@ export default class UserService {
 
 	getUser(userID){
 		return this._$http({
-			method: "POST",
-			url: "/user",
-			data: {userID: userID}
+			method: "GET",
+			url: "/user/" + userID
 		}).then((user, err)=>{
-			console.log(user);
-			return user
+			if(err){
+				console.log(err, "error in the service")
+				return null
+			}
+			console.log(user.data, "user in the service")
+			return user.data
 		})
 	}
 
