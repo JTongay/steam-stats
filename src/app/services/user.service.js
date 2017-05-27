@@ -12,10 +12,8 @@ export default class UserService {
 			url: "/user/" + userID
 		}).then((user, err)=>{
 			if(err){
-				console.log(err, "error in the service")
 				return null
 			}
-			console.log(user.data, "user in the service")
 			return user.data
 		})
 	}

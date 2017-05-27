@@ -8,8 +8,12 @@ export default class HomeComponent {
     this.user = user
     this.user.getUser($localStorage.id).then((usr, err)=>{
       this.currentUser = usr
+      console.log(this.currentUser)
+      this._steamSearchService.getUserProfile(usr.steamID).then((user, err)=>{
+        console.log(user)
+        this.steamUser = user
+      })
     })
-    console.log(this.user, "user info")
   }
 
   searchForUser(e,user){
