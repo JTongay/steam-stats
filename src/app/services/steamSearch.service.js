@@ -41,21 +41,10 @@ export default class steamSearch {
     })
   }
 
-  // getGameInfo(gameID, steamID){
-  //   return this._$http({
-  //     method: "GET",
-  //     url: "https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?key=" + process.env.STEAM_API_KEY + "&appid=" + gameID + "&steamid=" + steamID
-  //   }).then((res)=>{
-  //     console.log(res);
-  //     return res
-  //   }).catch((err)=>{
-  //     console.log(err);
-  //   })
-  // }
-  getGameInfo(){
+  getGameInfo(gameID, steamID){
     return this._$http({
       method: "GET",
-      url: "https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=440&key=9ED35D99E28A767772C00F503530363F&steamid=76561197972495328"
+      url: "https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=" + gameID + "&key=" + process.env.STEAM_API_KEY + "&steamid=" + steamID
     }).then((res)=>{
       console.log(res);
       return res
@@ -63,6 +52,17 @@ export default class steamSearch {
       console.log(err);
     })
   }
+  // getGameInfo(){
+  //   return this._$http({
+  //     method: "GET",
+  //     url: "https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=440&key=9ED35D99E28A767772C00F503530363F&steamid=76561197972495328"
+  //   }).then((res)=>{
+  //     console.log(res);
+  //     return res
+  //   }).catch((err)=>{
+  //     console.log(err);
+  //   })
+  // }
 
 
 }

@@ -20,15 +20,15 @@ export default class HomeComponent {
         this.playedGames = user.response.games.filter((game)=>{
           return game.playtime_forever > 0
         })
-        this._steamSearchService.getGameInfo().then((info,err)=>{
-          console.log(info, "game info");
-        })
-        // this.playedGames.forEach((game)=>{
-        //   this._steamSearchService.getGameInfo(game.appid, usr.steamID).then((info, err)=>{
-        //     console.log(info, "game info");
-        //     this.usersGameInfo = info
-        //   })
+        // this._steamSearchService.getGameInfo().then((info,err)=>{
+        //   console.log(info, "game info");
         // })
+        this.playedGames.forEach((game)=>{
+          this._steamSearchService.getGameInfo(game.appid, usr.steamID).then((info, err)=>{
+            console.log(info, "game info");
+            this.usersGameInfo = info
+          })
+        })
       })
     })
   }
