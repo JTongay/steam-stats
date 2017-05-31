@@ -44,7 +44,7 @@ export default class steamSearch {
   getGameInfo(gameID, steamID){
     return this._$http({
       method: "GET",
-      url: "https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0001/?appid=" + gameID + "&key=" + process.env.STEAM_API_KEY + "&steamid=" + steamID
+      url: "https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=" + gameID + "&key=" + process.env.STEAM_API_KEY + "&steamid=" + steamID
     }).then((res)=>{
       console.log(res);
       return res
