@@ -46,7 +46,6 @@ export default class steamSearch {
       method: "GET",
       url: "https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=" + gameID + "&key=" + process.env.STEAM_API_KEY + "&steamid=" + steamID
     }).then((res)=>{
-      console.log(res);
       return res
     }).catch((err)=>{
       console.log(err);

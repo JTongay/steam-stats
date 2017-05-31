@@ -20,23 +20,19 @@ export default class HomeComponent {
         this.playedGames = user.response.games.filter((game)=>{
           return game.playtime_forever > 0
         })
-        // this._steamSearchService.getGameInfo().then((info,err)=>{
-        //   console.log(info, "game info");
-        // })
+
+        let getGameInfoArr = []
+        //Get game information for filtered out games
         this.playedGames.forEach((game)=>{
           this._steamSearchService.getGameInfo(game.appid, usr.steamID).then((info, err)=>{
-            console.log(info, "game info");
-            this.usersGameInfo = info
+            //filter out bad requests
+            getGameInfoArr.push(info)
+        
           })
         })
+        console.log(getGameInfoArr);
       })
     })
   }
-
-  // getGameInfo(gameID){
-  //   this.ownedGames.response.games.forEach((game)=>{
-  //
-  //   })
-  // }
 
 }
