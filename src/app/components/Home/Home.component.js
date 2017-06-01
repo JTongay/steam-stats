@@ -23,10 +23,10 @@ export default class HomeComponent {
         console.log(this.ownedGamesArray, "ownedGamesArray");
         this.ownedGamesArray.forEach((game)=>{
           this._steamSearchService.getGameInfo(game.appid).then((res, err)=>{
-            this.ownedGamesInfo.push(res)
-            console.log(this.ownedGamesInfo, "ownedGamesInfo");
+            this.ownedGamesInfo.push(res.data[game.appid])
           })
         })
+        console.log(this.ownedGamesInfo, "ownedGamesInfo");
       })
     })
   }
