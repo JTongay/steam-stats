@@ -9,4 +9,7 @@
 <div ng-if="home.currentUser">
 	<h1>{{home.currentUser.username}} with id {{home.currentUser.steamID}}</h1>
 </div>
+<ul>
+  <li ng-repeat="ownedGamesInfo in home.ownedGamesInfo">{{ownedGamesInfo.data.name}}</li>
+</ul>
 <!-- <home-search></home-search> -->
