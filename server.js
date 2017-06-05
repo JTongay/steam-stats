@@ -6,7 +6,7 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const SteamStrategy = require('passport-steam').Strategy
 const mongoose = require('mongoose')
-const loginRoutes = require('./server/routes/login.routes')
+// const loginRoutes = require('./server/routes/login.routes')
 let loggedInSteamUser = null
 require('dotenv').config();
 
@@ -59,6 +59,9 @@ passport.use(new SteamStrategy({
     let steamId = identifier.match(/\d+$/)[0]
     loggedInSteamUser = profile
     User.findOne({ steamID: steamId }, function (err, user) {
+
+      //wtf should i do here?
+
       // if(!user){
       //   let newUser = new User({steamID: steamId})
       //   newUser.save(steamId, (e, usr)=>{
