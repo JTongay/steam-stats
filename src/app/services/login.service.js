@@ -6,15 +6,15 @@ export default class LoginService {
   }
 
   handleSignup(username, password){
-    return this._$http.post('/signup', {user: username, pass: password}).then((res, err)=>{
-      
+    return this._$http.post('https://api-steam-stats.herokuapp.com/signup', {user: username, pass: password}).then((res, err)=>{
+
     })
   }
 
   handleLogin(username, password){
     console.log(username);
     console.log(password);
-    return this._$http.post('/login', {user: username, pass: password}).then((res, err)=>{
+    return this._$http.post('https://api-steam-stats.herokuapp.com/login', {user: username, pass: password}).then((res, err)=>{
       return res
     })
   }

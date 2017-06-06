@@ -37,7 +37,7 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
               $localStorage.steamID = res.data.id
               $http({
                 method: "PUT",
-                url: "/add-steam",
+                url: "https://api-steam-stats.herokuapp.com/add-steam",
                 data: {
                   userID: $localStorage.id,
                   steamID: res.data.id
@@ -54,7 +54,7 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
               // return err
             })
         } else {
-
+          //do something
         }
       }]
     }

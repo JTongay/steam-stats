@@ -3,28 +3,9 @@ const app = express()
 const port = process.env.PORT || 3000
 const path = require('path')
 const passport = require('passport')
-const jwt = require('jsonwebtoken')
 const SteamStrategy = require('passport-steam').Strategy
-const mongoose = require('mongoose')
-// const loginRoutes = require('./server/routes/login.routes')
 let loggedInSteamUser = null
 require('dotenv').config();
-
-//mongo connection
-
-//es6 promises
-mongoose.Promise = global.Promise;
-
-//Connect to MongoDB
-mongoose.connect("mongodb://localhost/testaroo");
-
-mongoose.connection.once('open', function(){
-    console.log('Connection has been made, now make fireworks');
-  }).on('error', function(err) {
-    console.log('Connection error:', err);
-  })
-
-const User = require('./server/models/User.model')
 
 // Middlewares
 const bodyParser = require('body-parser')
@@ -35,9 +16,6 @@ app.use(bodyParser.json());
 app.use(express.static('dist'))
 app.use(passport.initialize());
 app.use(passport.session());
-
-//use dem routes
-app.use(loginRoutes)
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -58,23 +36,12 @@ passport.use(new SteamStrategy({
   function(identifier, profile, done) {
     let steamId = identifier.match(/\d+$/)[0]
     loggedInSteamUser = profile
-    User.findOne({ steamID: steamId }, function (err, user) {
-
-      //wtf should i do here?
-
-      // if(!user){
-      //   let newUser = new User({steamID: steamId})
-      //   newUser.save(steamId, (e, usr)=>{
-      //     return done(usr)
-      //   })
-      // }
-     return done(err, user);
-   });
+    return done(err, user);
   }
 ));
 
 
-app.get('/', (req, res)=>{
+app.get('/*', (req, res)=>{
   res.sendFile(path.join(__dirname + '/dist/app/index.html'))
 })
 

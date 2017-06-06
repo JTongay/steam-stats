@@ -9,7 +9,7 @@ export default class UserService {
 	getUser(userID){
 		return this._$http({
 			method: "GET",
-			url: "/user/" + userID
+			url: "https://api-steam-stats.herokuapp.com/user/" + userID
 		}).then((user, err)=>{
 			if(err){
 				return null
