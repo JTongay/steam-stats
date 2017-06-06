@@ -36,12 +36,12 @@ passport.use(new SteamStrategy({
   function(identifier, profile, done) {
     let steamId = identifier.match(/\d+$/)[0]
     loggedInSteamUser = profile
-    return done(err, user);
+    return done();
   }
 ));
 
 
-app.get('/*', (req, res)=>{
+app.get('/', (req, res)=>{
   res.sendFile(path.join(__dirname + '/dist/app/index.html'))
 })
 
