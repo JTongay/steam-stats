@@ -29,6 +29,7 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
     controllerAs: 'home',
     resolve: {
       steamUser: ['$http', '$state', '$localStorage', function($http, $state, $localStorage){
+        console.log($localStorage);
        if(!$localStorage.steamID || !$localStorage.token){
         return $http.get("/auth/steam/checkuser")
             .then((res)=>{
