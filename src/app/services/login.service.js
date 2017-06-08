@@ -7,7 +7,7 @@ export default class LoginService {
 
   handleSignup(username, password){
     return this._$http.post('https://api-steam-stats.herokuapp.com/signup', {user: username, pass: password}).then((res, err)=>{
-
+      console.log(res, "signup result");
     })
   }
 

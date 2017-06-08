@@ -4,11 +4,12 @@ export default class HomeComponent {
     '$inject'
     this._steamSearchService = steamSearchService
     this.setUserID = null
+    console.log($localStorage);
     // this.steamUser = steamUser
     this.user = user
     this.user.getUser($localStorage.id).then((usr, err)=>{
       this.currentUser = usr
-      console.log(this.currentUser)
+      console.log(this.currentUser, "currentUser")
       //Get user profile
       this._steamSearchService.getUserProfile(usr.steamID).then((user, err)=>{
         console.log(user)
@@ -34,8 +35,8 @@ export default class HomeComponent {
       })
     })
   }
-
 }
+
 
 
 
