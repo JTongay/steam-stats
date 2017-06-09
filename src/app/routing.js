@@ -1,28 +1,14 @@
 import HomeComponent from './components/Home/Home.component'
 import LoginComponent from './components/Login/Login.component'
 import SignupComponent from './components/Signup/Signup.component'
+import GameComponent from './components/Game/Game.component'
+import GameInfoComponent from './components/GameInfo/GameInfo.component'
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
 
 export default function routing($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
-  const login = {
-    url: '/login',
-    template: require('./components/Login/Login.html'),
-    controller: LoginComponent,
-    controllerAs: 'login'
-  }
-
-  const signup = {
-    url: '/signup',
-    template: require('./components/Signup/Signup.html'),
-    controller: SignupComponent,
-    controllerAs: 'signup'
-  }
-
-  $stateProvider.state('login', login)
-  $stateProvider.state('signup', signup)
-  $stateProvider.state('home', {
+  const home = {
     url: '/',
     template: require('./components/Home/Home.html'),
     controller: HomeComponent,
@@ -59,8 +45,45 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
         }
       }]
     }
-  })
+  }
+
+  const login = {
+    url: '/login',
+    template: require('./components/Login/Login.html'),
+    controller: LoginComponent,
+    controllerAs: 'login'
+  }
+
+  const signup = {
+    url: '/signup',
+    template: require('./components/Signup/Signup.html'),
+    controller: SignupComponent,
+    controllerAs: 'signup'
+  }
+
+  const game = {
+    url: '/game',
+    template: require('./components/Game/Game.html'),
+    controller: GameComponent,
+    controllerAs: 'game'
+  }
+
+  const gameInfo = {
+    url: '/game/:id',
+    template: require('./components/GameInfo/GameInfo.html'),
+    controller: GameInfoComponent,
+    controllerAs: 'gameInfo'
+  }
+
+  //register states
+  $stateProvider.state('home', home)
+  $stateProvider.state('login', login)
+  $stateProvider.state('signup', signup)
+  $stateProvider.state('game', game)
+  $stateProvider.state('gameinfo', gameInfo)
+
   $locationProvider.html5Mode(true);
+
   $urlRouterProvider.otherwise('/');
 
 }

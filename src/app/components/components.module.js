@@ -8,6 +8,8 @@ import LoginModule from './Login/Login.module'
 import LoginFormModule from './LoginForm/LoginForm.module'
 import SignupModule from './Signup/Signup.module'
 import SignupFormModule from './SignupForm/SignupForm.module'
+import GameModule from './Game/Game.module'
+import GameInfoModule from './GameInfo/GameInfo.module'
 
 const ComponentsModule = angular.module('app.components', [])
                                     .component('home', HomeModule)
@@ -17,6 +19,8 @@ const ComponentsModule = angular.module('app.components', [])
                                     .component('loginForm', LoginFormModule)
                                     .component('signup', SignupModule)
                                     .component('signupForm', SignupFormModule)
+                                    .component('game', GameModule)
+                                    .component('gameInfo', GameInfoModule)
                                     .name
 
 module.exports = ComponentsModule
