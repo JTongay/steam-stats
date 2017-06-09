@@ -41,9 +41,6 @@ passport.use(new SteamStrategy({
 ));
 
 
-app.get('/*', (req, res)=>{
-  res.sendFile(path.join(__dirname + '/dist/app/index.html'))
-})
 
 app.get('/auth/steam',
   passport.authenticate('steam'),
@@ -69,7 +66,9 @@ app.get('/auth/steam/checkuser', (req, res, next)=>{
 
 })
 
-
+app.get('/*', (req, res)=>{
+  res.sendFile(path.join(__dirname + '/dist/app/index.html'))
+})
 
 app.listen(port, function () {
   console.log('hello from', port);
