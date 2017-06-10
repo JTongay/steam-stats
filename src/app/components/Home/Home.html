@@ -7,12 +7,9 @@
   <input type="submit">
 </form>
 <div ng-if="home.currentUser">
-	<h1>{{home.currentUser.username}} with id {{home.currentUser.steamID}}</h1>
+  <img ng-src="{{home.steamUser.data.response.players[0].avatarfull}}" alt="">
+  <p>Steam Name: {{home.steamUser.data.response.players[0].personaname}}</p>
+  <p>Total Games: {{home.allGames}}</p>
+  <p>Total Played Games: {{home.playedGames.length}}</p>
 </div>
-<ul>
-  <li ng-repeat="ownedGamesInfo in home.ownedGamesInfo">
-    <img ng-src="{{ownedGamesInfo.data.header_image}}" alt="">
-    {{ownedGamesInfo.data.name}}
-  </li>
-</ul>
 <!-- <home-search></home-search> -->

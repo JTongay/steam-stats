@@ -4,6 +4,7 @@ export default class UserService {
 		'$inject'
 		this._$http = $http
 		this._$localStorage = $localStorage
+		this.playedGames = null
 	}
 
 	getUser(userID){
@@ -16,6 +17,14 @@ export default class UserService {
 			}
 			return user.data
 		})
+	}
+
+	stashPlayedGamesData(games){
+		this.playedGames = games
+	}
+
+	grabPlayedGamesData(){
+		return this.playedGames
 	}
 
 }
