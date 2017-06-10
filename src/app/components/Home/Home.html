@@ -6,10 +6,15 @@
   <input type="text" ng-model="user">
   <input type="submit">
 </form>
-<div ng-if="home.currentUser">
-  <img ng-src="{{home.steamUser.data.response.players[0].avatarfull}}" alt="">
-  <p>Steam Name: {{home.steamUser.data.response.players[0].personaname}}</p>
-  <p>Total Games: {{home.allGames}}</p>
-  <p>Total Played Games: {{home.playedGames.length}}</p>
+<div class="row">
+  <div class="col-md-6">
+    <div ng-if="home.currentUser">
+      <img ng-src="{{home.steamUser.data.response.players[0].avatarfull}}" alt="">
+      <p>Steam Name: {{home.steamUser.data.response.players[0].personaname}}</p>
+      <p>Total Games: {{home.allGames}}</p>
+      <p>Total Played Games: {{home.playedGames.length}}</p>
+      <button type="button" class="btn btn-primary" ng-click="home.storeGameInfo()">Go Checkout Your Played Games</button>
+    </div>
+  </div>
+  <div class="col-md-6"></div>
 </div>
-<!-- <home-search></home-search> -->

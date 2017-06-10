@@ -1,7 +1,8 @@
 export default class HomeComponent {
 
-  constructor(steamSearchService, $localStorage, user){
+  constructor(steamSearchService, $localStorage, user, $state){
     '$inject'
+    this._$state = $state
     this._steamSearchService = steamSearchService
     this.setUserID = null
     console.log($localStorage);
@@ -25,6 +26,12 @@ export default class HomeComponent {
       })
     })
   }
+
+  storeGameInfo(){
+    this.user.stashPlayedGamesData(this.playedGames)
+    this._$state.go('game')
+  }
+
 }
 
 
