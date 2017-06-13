@@ -5,6 +5,7 @@ export default class UserService {
 		this._$http = $http
 		this._$localStorage = $localStorage
 		this.playedGames = null
+		this.game = null
 	}
 
 	getUser(userID){
@@ -19,12 +20,22 @@ export default class UserService {
 		})
 	}
 
+	//stash
 	stashPlayedGamesData(games){
 		this.playedGames = games
 	}
 
+	stashGameData(g){
+		this.game = g
+	}
+
+	// grab
 	grabPlayedGamesData(){
 		return this.playedGames
+	}
+
+	grabGameData(){
+		return this.game
 	}
 
 }
