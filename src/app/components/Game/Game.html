@@ -1,8 +1,9 @@
 <h1>Check out all of your played Games</h1>
 <input type="text" ng-model="gameInfo">
-<md-list>
-  <md-list-item ng-repeat="ownedGameInfo in game.ownedGamesInfo">
+<ul>
+  <li ng-repeat="ownedGameInfo in game.ownedGamesInfo">
+    <h3>{{ownedGamesInfo.data.header_image}}</h3>
     <img ng-src="{{ownedGamesInfo.data.header_image}}" alt="">
     {{ownedGameInfo.data.name}}
-  </md-list-item>
-</md-list>
+  </li>
+</ul>

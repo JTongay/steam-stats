@@ -4,13 +4,9 @@ import SignupComponent from './components/Signup/Signup.component'
 import GameComponent from './components/Game/Game.component'
 import GameInfoComponent from './components/GameInfo/GameInfo.component'
 
-routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$mdThemingProvider'];
+routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
 
-export default function routing($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
-
-  $mdThemingProvider.theme('forest')
-      .primaryPalette('brown')
-      .accentPalette('red');
+export default function routing($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
   const home = {
     url: '/',

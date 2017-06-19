@@ -10,7 +10,7 @@ export default class SignupFormComponent {
 
   sendSignup(usr, pass){
     return this._login.handleSignup(usr, pass).then((res)=>{
-    	
+    	// this._$state.go('http://localhost:3000/auth/steam')
     })
   }
 
