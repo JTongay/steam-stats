@@ -1,6 +1,7 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import 'ngstorage'
+import './app.scss'
 
 import routing from './routing'
 import AppConfig from './app.config'
