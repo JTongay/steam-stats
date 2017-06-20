@@ -1,8 +1,9 @@
 export default class GameComponent {
 
-  constructor(user, steamSearchService){
+  constructor(user, steamSearchService, $state){
     '$inject'
     this._user = user
+    this._$state = $state
     this._steamSearchService = steamSearchService
     this.playedGames = this._user.grabPlayedGamesData()
     this.ownedGamesInfo = []
@@ -20,7 +21,11 @@ export default class GameComponent {
   }
 
   selectThisGame(game){
-    return this._user.stashGameData(game)
+    this._user.stashGameData(game)
+    console.log(game)
+    return this._$state.go('gameinfo', {
+      selectedGame: game.steam_appid
+    })
   }
 
 }

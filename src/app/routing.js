@@ -69,9 +69,12 @@ export default function routing($stateProvider, $urlRouterProvider, $locationPro
   }
 
   const gameInfo = {
-    url: '/game/:id',
+    url: '/game/:selectedGame',
     template: require('./components/GameInfo/GameInfo.html'),
     controller: GameInfoComponent,
+    params: {
+      selectedGame: null
+    },
     controllerAs: 'gameInfo'
   }
 

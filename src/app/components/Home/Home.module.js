@@ -1,7 +1,7 @@
 import angular from 'angular'
 
 import HomeController from './Home.component'
-
+import './Home.scss'
 const Home = {
   template: require('./Home.html'),
   controller: HomeController

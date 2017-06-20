@@ -1,0 +1,25 @@
+$steamCard: grey;
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  width: 25%;
+  margin: 0 auto;
+  padding: 45px;
+  background-color: $steamCard;
+  border-radius: 23px;
+}
+
+.steam-avatar {
+  min-width: 100px;
+  min-height: 100px;
+  cursor: pointer;
+}
+
+.steam-items {
+  flex: 1;
+  align-self: center;
+  flex-grow: 0;
+}

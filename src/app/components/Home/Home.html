@@ -1,15 +1,7 @@
-<div class="jumbotron">
-  <h1>Check out your favorite Steam Game!</h1>
-</div>
-<h1>Search for yourself</h1>
-<form action="">
-  <input type="text" ng-model="user">
-  <input type="submit">
-</form>
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <div ng-if="home.currentUser">
-      <img ng-src="{{home.steamUser.data.response.players[0].avatarfull}}" alt="">
+      <img ng-src="{{home.steamUser.data.response.players[0].avatarfull}}" alt="" class="steam-avatar">
       <p>Steam Name: {{home.steamUser.data.response.players[0].personaname}}</p>
       <p>Total Games: {{home.allGames}}</p>
       <p>Total Played Games: {{home.playedGames.length}}</p>
@@ -17,4 +9,11 @@
     </div>
   </div>
   <div class="col-md-6"></div>
+</div> -->
+<div class="home-container">
+  <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/05/05811ae8448c69e6d8a1094bdc274d2d7bc1200a_medium.jpg" alt="" class="steam-avatar steam-items">
+  <p class="steam-items">Steam Name: Fruit</p>
+  <p class="steam-items">Total Games: 123</p>
+  <p class="steam-items">Total Played Games: 7</p>
+  <button type="button" class="steam-items" ng-click="home.storeGameInfo()">Go Checkout Your Played Games</button>
 </div>
