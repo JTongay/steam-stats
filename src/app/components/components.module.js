@@ -10,8 +10,10 @@ import SignupModule from './Signup/Signup.module'
 import SignupFormModule from './SignupForm/SignupForm.module'
 import GameModule from './Game/Game.module'
 import GameInfoModule from './GameInfo/GameInfo.module'
+import NavModule from './Nav/Nav.module'
 
 const ComponentsModule = angular.module('app.components', [])
+                                    .component('navbar', NavModule)
                                     .component('home', HomeModule)
                                     .component('homeSearch', HomeSearchModule)
                                     .component('searchResults', SearchResultsModule)
