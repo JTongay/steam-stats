@@ -1,8 +1,18 @@
 <header>
-  <div class="nav-container">
+  <div class="nav-container" ng-class="{
+    'open-nav': $ctrl.isOpen
+  }">
+    <span><a href="javascript:void(0)" class="closebtn" ng-click="$ctrl.closeNav()">&times;</a></span>
     <span class="active nav-items"><a ui-sref="home">Home</a></span>
     <span class="nav-items"><a ui-sref="login">Login</a></span>
     <span class="nav-items"><a ui-sref="game">Game</a></span>
     <span class="nav-items"><a ui-sref="gameinfo">GameInfo</a></span>
   </div>
+
+  <div class="burger">
+    <span style="font-size:30px;cursor:pointer" ng-click="$ctrl.openNav()" ng-class="{
+
+    }">&#9776; open</span>
+  </div>
+
 </header>
