@@ -2,17 +2,18 @@
   <div class="nav-container" ng-class="{
     'open-nav': $ctrl.isOpen
   }">
+    <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/05/05811ae8448c69e6d8a1094bdc274d2d7bc1200a_medium.jpg" alt="" class="steam-avatar">
     <span><a href="javascript:void(0)" class="closebtn" ng-click="$ctrl.closeNav()">&times;</a></span>
-    <span class="active nav-items"><a ui-sref="home">Home</a></span>
-    <span class="nav-items"><a ui-sref="login">Login</a></span>
-    <span class="nav-items"><a ui-sref="game">Game</a></span>
-    <span class="nav-items"><a ui-sref="gameinfo">GameInfo</a></span>
+    <span class="active nav-items" ng-click="$ctrl.closeNav()"><a ui-sref="home">Home</a></span>
+    <span class="nav-items" ng-click="$ctrl.closeNav()"><a ui-sref="login">Login</a></span>
+    <span class="nav-items" ng-click="$ctrl.closeNav()"><a ui-sref="game">Game</a></span>
+    <span class="nav-items" ng-click="$ctrl.closeNav()"><a ui-sref="gameinfo">GameInfo</a></span>
   </div>
 
   <div class="burger">
     <span style="font-size:30px;cursor:pointer" ng-click="$ctrl.openNav()" ng-class="{
-
-    }">&#9776; open</span>
+      'close-nav': !$ctrl.isOpen
+    }">&#9776;</span>
   </div>
 
 </header>

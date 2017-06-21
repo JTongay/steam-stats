@@ -1,7 +1,7 @@
 export default class Nav {
 
   constructor(){
-    this.isOpen = true;
+    this.isOpen = false;
   }
 
   closeNav() {

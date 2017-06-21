@@ -48,6 +48,10 @@ $navColor: grey;
   width: 250px;
 }
 
+.close-nav {
+  width: 0;
+}
+
 .burger {
   transition: margin-left .5s;
   padding: 20px;
