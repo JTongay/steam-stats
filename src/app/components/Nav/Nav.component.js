@@ -6,12 +6,10 @@ export default class Nav {
 
   closeNav() {
     this.isOpen = !this.isOpen
-    console.log(this.isOpen);
   }
 
   openNav() {
     this.isOpen = !this.isOpen
-    console.log(this.isOpen);
   }
 
 
