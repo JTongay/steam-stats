@@ -51,6 +51,7 @@ export default class steamSearch {
       console.log(err);
     })
   }
+
   getGameInfo(gameID){
     return this._$http({
       method: "GET",
@@ -59,6 +60,47 @@ export default class steamSearch {
       return res
     }).catch((err)=>{
       console.log(err);
+    })
+  }
+
+  getGlobalAchievementPercentForGame(gameID){
+    return this._$http({
+      method: "GET",
+      url: ` https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=${gameID}&format=json
+      `
+    }).then((res)=>{
+      console.log(res, "getGlobalAchievementPercentForGame");
+      return res
+    }).catch((err)=>{
+      console.log(err, "getGlobalAchievementPercentForGame error");
+      return err
+    })
+  }
+
+  getPlayerAchievementsForGame(userID, gameID){
+    return this._$http({
+      method: "GET",
+      url: `https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=${gameID}&key=${process.env.STEAM_API_KEY}&steamid=${userID}`
+    }).then((res)=>{
+      console.log(res, "getPlayerAchievementsForGame");
+      return res
+    }).catch((err)=>{
+      console.log(err, "getPlayerAchievementsForGame error");
+      return err
+    })
+  }
+
+  getGameSchema(gameID){
+    return this._$http({
+      method: "GET",
+      url: ` https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${process.env.STEAM_API_KEY}&appid=${gameID}
+      `
+    }).then((res)=>{
+      return res
+      console.log(res, "getGameSchema");
+    }).catch((err)=>{
+      return err
+      console.log(err, "getGameSchema error");
     })
   }
 

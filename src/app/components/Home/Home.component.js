@@ -8,23 +8,23 @@ export default class HomeComponent {
     console.log($localStorage);
     // this.steamUser = steamUser
     this.user = user
-    // this.user.getUser($localStorage.id).then((usr, err)=>{
-    //   this.currentUser = usr
-    //   console.log(this.currentUser, "currentUser")
-    //   //Get user profile
-    //   this._steamSearchService.getUserProfile($localStorage.steamID).then((user, err)=>{
-    //     console.log(user)
-    //     this.steamUser = user
-    //   })
-    //   //Get users owned games
-    //   this._steamSearchService.getOwnedGames($localStorage.steamID).then((user, err)=>{
-    //     //this response is an array of users owned game IDs
-    //     this.allGames = user.response.game_count
-    //     this.playedGames = user.response.games.filter((game)=>{
-    //       return game.playtime_forever > 0
-    //     })
-    //   })
-    // })
+    this.user.getUser($localStorage.id).then((usr, err)=>{
+      this.currentUser = usr
+      console.log(this.currentUser, "currentUser")
+      //Get user profile
+      this._steamSearchService.getUserProfile($localStorage.steamID).then((user, err)=>{
+        console.log(user)
+        this.steamUser = user
+      })
+      //Get users owned games
+      this._steamSearchService.getOwnedGames($localStorage.steamID).then((user, err)=>{
+        //this response is an array of users owned game IDs
+        this.allGames = user.response.game_count
+        this.playedGames = user.response.games.filter((game)=>{
+          return game.playtime_forever > 0
+        })
+      })
+    })
   }
 
   storeGameInfo(){
