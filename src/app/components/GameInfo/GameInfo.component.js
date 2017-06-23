@@ -12,8 +12,10 @@ export default class GameInfoComponent {
     console.log(this.globalAchievement, 'globalAchievement');
     this.playerAchievement = steamSearchService.getPlayerAchievementsForGame(this.usersSteamID, this.game.steam_appid)
     console.log(this.playerAchievement, 'playerAchievement');
-    this.gameSchema = steamSearchService.getGameSchema(this.game.steam_appid)
-    console.log(this.gameSchema, "gameSchema");
+    steamSearchService.getGameSchema(this.game.steam_appid).then((res, err)=>{
+      this.gameSchema = res.data.game.availableGameStats.achievements
+      console.log(this.gameSchema, "gameSchema");
+    })
   }
 
 }

@@ -4,3 +4,12 @@
     <img ng-src="{{gameInfo.game.header_image}}" alt="">
   </div>
 </div>
+
+<div class="achievements-container">
+  <div ng-repeat="achievement in gameInfo.gameSchema">
+    <img ng-src="{{achievement.icongray}}" alt="">
+    <h4>{{achievement.displayName}}</h4>
+    <span ng-if="achievement.hidden">hidden achievement</span>
+    <span ng-if="!achievement.hidden">{{achievement.description}}</span>
+  </div>
+</div>
