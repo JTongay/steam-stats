@@ -5,11 +5,9 @@
   </div>
 </div>
 
-<div class="achievements-container" ng-repeat="achievement in gameInfo.gameSchema" ng-repeat="player in gameInfo.playerAchievement">
-  <span ng-if="!player.achieved">{{player.achieved}}</span>
-  <span ng-if="player.achieved">{{player.achieved}}</span>
-  <img ng-if="!player.achieved" ng-src="{{achievement.icongray}}" alt="">
-  <img ng-if="player.achieved" ng-src="{{achievement.icon}}" alt="">
+<div class="achievements-container" ng-repeat="achievement in gameInfo.gameSchema track by $index">
+  <img ng-if="!gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icongray}}" alt="">
+  <img ng-if="gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icon}}" alt="">
   <h4>{{achievement.displayName}}</h4>
   <span ng-if="achievement.hidden">hidden achievement</span>
   <span ng-if="!achievement.hidden">{{achievement.description}}</span>
