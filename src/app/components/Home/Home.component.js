@@ -4,20 +4,22 @@ export default class HomeComponent {
     '$inject'
     this._$state = $state
     this._steamSearchService = steamSearchService
+    this._user = user
+    this._$localStorage = $localStorage
+  }
+
+  $onInit(){
     this.setUserID = null
-    console.log($localStorage);
-    // this.steamUser = steamUser
-    this.user = user
-    this.user.getUser($localStorage.id).then((usr, err)=>{
+    this._user.getUser(this._$localStorage.id).then((usr, err)=>{
       this.currentUser = usr
       console.log(this.currentUser, "currentUser")
       //Get user profile
-      this._steamSearchService.getUserProfile($localStorage.steamID).then((user, err)=>{
+      this._steamSearchService.getUserProfile(this._$localStorage.steamID).then((user, err)=>{
         console.log(user)
         this.steamUser = user
       })
       //Get users owned games
-      this._steamSearchService.getOwnedGames($localStorage.steamID).then((user, err)=>{
+      this._steamSearchService.getOwnedGames(this._$localStorage.steamID).then((user, err)=>{
         //this response is an array of users owned game IDs
         this.allGames = user.response.game_count
         this.playedGames = user.response.games.filter((game)=>{
@@ -28,7 +30,7 @@ export default class HomeComponent {
   }
 
   storeGameInfo(){
-    this.user.stashPlayedGamesData(this.playedGames)
+    this._user.stashPlayedGamesData(this.playedGames)
     this._$state.go('game')
   }
 

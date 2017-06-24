@@ -5,6 +5,9 @@ export default class GameComponent {
     this._user = user
     this._$state = $state
     this._steamSearchService = steamSearchService
+  }
+
+  $onInit(){
     this.playedGames = this._user.grabPlayedGamesData()
     this.ownedGamesInfo = []
     //Get game information for each game owned.
@@ -17,7 +20,6 @@ export default class GameComponent {
       })
     })
     console.log(this.ownedGamesInfo, "ownedGamesInfo");
-
   }
 
   selectThisGame(game){
