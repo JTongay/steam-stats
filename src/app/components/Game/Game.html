@@ -1,12 +1,10 @@
 <h1>Check out all of your played Games</h1>
-<input type="text" ng-model="gameInfo">
-<h2>Booyah</h2>
 <ul>
   <li ng-repeat="ownedGameInfo in game.ownedGamesInfo" ng-click="game.selectThisGame(ownedGameInfo)">
     <div>
       {{ownedGameInfo.name}}
     </div>
-    <img ng-src="{{ownedGameInfo.header_image}}" alt="" />
+    <img ng-src="{{ownedGameInfo.header_image}}" alt="{{ownedGamesInfo.name}}" />
     <h2>{{ownedGameInfo.short_description}}</h2>
   </li>
 </ul>
