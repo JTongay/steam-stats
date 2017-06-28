@@ -17,20 +17,23 @@ export default class GameInfoComponent {
       this.game.steam_appid
     ).then((res, err)=>{
         this.playerAchievement = res.data.playerstats.achievements
+        let playerAchievement = res.data.playerstats.achievements
         this._steamSearchService.getGlobalAchievementPercentForGame(this.game.steam_appid).then((res, err)=>{
-          this.globalAchievement = res.data.achievementpercentages.achievements
-          this.playerAchievement.map((achievement, index)=>{
-            achievement.globalPercent = this.globalPercent[index]
+          let globalAchievement = res.data.achievementpercentages.achievements
+          playerAchievement.forEach((achievement, pIndex)=>{
+            globalAchievement.forEach((globalAchievement, gIndex)=>{
+              if(achievement.apiname === globalAchievement.name){
+                achievement.globalPercent = globalAchievement.percent
+              }
+            })
           })
+          this.playerAchievement = playerAchievement
           console.log(this.playerAchievement, "playerAchievement");
       })
     })
-
-    console.log(this.playerAchievement, 'playerAchievement');
     this._steamSearchService.getGameSchema(this.game.steam_appid).then((res, err)=>{
       this.gameSchema = res.data.game.availableGameStats.achievements
       return this.gameSchema
     })
-    console.log(this.gameSchema, "gameSchema");
   }
 }
