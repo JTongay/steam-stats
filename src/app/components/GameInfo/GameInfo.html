@@ -1,15 +1,14 @@
-<h1>{{gameInfo.game.name}}</h1>
-<div class="row">
-  <div class="col-md-6">
-    <img ng-src="{{gameInfo.game.header_image}}" alt="">
-  </div>
+<div class="game-info">  
+  <h1>{{gameInfo.game.name}}</h1>
+  <img ng-src="{{gameInfo.game.header_image}}" alt="">
 </div>
-
-<div class="achievements-container" ng-repeat="achievement in gameInfo.gameSchema track by $index">
-  <img ng-if="!gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icongray}}" alt="">
-  <img ng-if="gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icon}}" alt="">
-  <h4>{{achievement.displayName}}</h4>
-  <span ng-if="achievement.hidden">hidden achievement</span>
-  <span ng-if="!achievement.hidden">{{achievement.description}}</span>
-  <p>{{gameInfo.playerAchievement[$index].globalPercent | percent:2}} of users completed</p>
+<div class="achievements-container">
+  <div class="achievements" ng-repeat="achievement in gameInfo.gameSchema track by $index">
+    <img ng-if="!gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icongray}}" alt="">
+    <img ng-if="gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icon}}" alt="">
+    <h4 class="achievement-name">{{achievement.displayName}}</h4>
+    <span ng-if="achievement.hidden">hidden achievement</span>
+    <span ng-if="!achievement.hidden">{{achievement.description}}</span>
+    <p>{{gameInfo.playerAchievement[$index].globalPercent | percent:2}} of users completed</p>
+  </div>
 </div>
