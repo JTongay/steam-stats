@@ -11,4 +11,5 @@
   <h4>{{achievement.displayName}}</h4>
   <span ng-if="achievement.hidden">hidden achievement</span>
   <span ng-if="!achievement.hidden">{{achievement.description}}</span>
+  <p>{{gameInfo.playerAchievement[$index].globalPercent | percent:2}} of users completed</p>
 </div>

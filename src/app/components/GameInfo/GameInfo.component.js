@@ -16,7 +16,6 @@ export default class GameInfoComponent {
       this.usersSteamID,
       this.game.steam_appid
     ).then((res, err)=>{
-        this.playerAchievement = res.data.playerstats.achievements
         let playerAchievement = res.data.playerstats.achievements
         this._steamSearchService.getGlobalAchievementPercentForGame(this.game.steam_appid).then((res, err)=>{
           let globalAchievement = res.data.achievementpercentages.achievements
@@ -33,7 +32,7 @@ export default class GameInfoComponent {
     })
     this._steamSearchService.getGameSchema(this.game.steam_appid).then((res, err)=>{
       this.gameSchema = res.data.game.availableGameStats.achievements
-      return this.gameSchema
+      console.log(this.gameSchema);
     })
   }
 }
