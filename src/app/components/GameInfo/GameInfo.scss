@@ -5,20 +5,30 @@
 
   img {
     flex-grow: 0;
+    align-self: flex-start;
   }
 
 }
+
+.all-achievements {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: flex-start;
+  flex-wrap: wrap;
+  padding: 30px;
+}
+
 .achievements-container {
   display: flex;
-  flex-direction: row;
   justify-content: flex-start;
+  flex-direction: column;
   flex-wrap: wrap;
+  width: 30%;
+  border: 1px solid black;
 }
 
 .achievements {
-  flex: 1;
-  border: 1px solid black;
-  padding: 20px;
+  padding: 8px;
 }
 
 .achievement-image {
