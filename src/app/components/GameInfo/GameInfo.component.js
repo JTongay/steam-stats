@@ -1,15 +1,18 @@
 export default class GameInfoComponent {
 
-  constructor(steamSearchService, user, $localStorage){
+  constructor(steamSearchService, user, $localStorage, $stateParams){
     '$inject'
     this._steamSearchService = steamSearchService
     this._user = user
     this._$localStorage = $localStorage
+    this._$stateParams = $stateParams
   }
 
   $onInit(){
-    this.game = this._user.grabGameData()
-    console.log(this.game)
+    this._steamSearchService.getGameInfo(this._$stateParams.selectedGame).then((res, err)=>{
+      this.game = res.data[this._$stateParams.selectedGame].data
+    })
+    console.log(this)
     this.usersSteamID = this._$localStorage.steamID
 
     this._steamSearchService.getPlayerAchievementsForGame(

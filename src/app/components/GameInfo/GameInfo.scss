@@ -25,10 +25,12 @@
   flex-wrap: wrap;
   width: 30%;
   border: 1px solid black;
+  flex: 1;
 }
 
 .achievements {
   padding: 8px;
+  flex-shrink: 0;
 }
 
 .achievement-image {
