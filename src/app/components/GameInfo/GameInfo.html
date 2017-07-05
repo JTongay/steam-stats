@@ -1,12 +1,14 @@
-<div class="game-info">
-  <h1>{{gameInfo.game.name}}</h1>
-  <p>Metacritic: {{gameInfo.game.metacritic.score}}</p>
-  <img ng-src="{{gameInfo.game.header_image}}" alt="">
+<div class="game-info-container">
+  <h1 class="game-info-items">{{gameInfo.game.name}}</h1>
+  <img ng-src="{{gameInfo.game.header_image}}" alt="" class="game-info-items">
+  <span class="game-info-items">Metacritic: {{gameInfo.game.metacritic.score}}</span>
+  <span class="game-info-items">Release Date: {{gameInfo.game.release_date.date}}</span>
+  <span class="game-info-items">Price: {{gameInfo.game.price_overview.final | currency}}</span>
 </div>
 <div class="all-achievements">
   <div class="achievements-container" ng-repeat="achievement in gameInfo.gameSchema track by $index">
-    <img ng-if="!gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icongray}}" alt="" class="achievement-image">
-    <img ng-if="gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icon}}" alt="" class="achievement-image">
+    <img ng-if="!gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icongray}}" alt="" class="achievement-image achievements">
+    <img ng-if="gameInfo.playerAchievement[$index].achieved" ng-src="{{achievement.icon}}" alt="" class="achievement-image achievements">
     <h4 class="achievement-name achievements">{{achievement.displayName}}</h4>
     <span ng-if="achievement.hidden" class="achievements">hidden achievement</span>
     <span ng-if="!achievement.hidden" class="achievements">{{achievement.description}}</span>

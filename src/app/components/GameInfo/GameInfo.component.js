@@ -11,6 +11,7 @@ export default class GameInfoComponent {
   $onInit(){
     this._steamSearchService.getGameInfo(this._$stateParams.selectedGame).then((res, err)=>{
       this.game = res.data[this._$stateParams.selectedGame].data
+      console.log(this.game);
     })
     this.usersSteamID = this._$localStorage.steamID
 

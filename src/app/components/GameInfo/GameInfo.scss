@@ -1,13 +1,15 @@
-.game-info {
+.game-info-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
+  align-items: center;
+  flex-wrap: wrap;
   img {
-    flex-grow: 0;
-    align-self: flex-start;
+    margin: 0 auto;
   }
+}
 
+.game-info-items {
+  flex: 1;
 }
 
 .all-achievements {
@@ -25,7 +27,7 @@
   flex-wrap: wrap;
   width: 30%;
   border: 1px solid black;
-  flex: 1;
+  // flex: 1;
 }
 
 .achievements {
@@ -34,7 +36,7 @@
 }
 
 .achievement-image {
-  margin: 0 auto;
+  margin: auto;
 }
 
 .achievement-name {
