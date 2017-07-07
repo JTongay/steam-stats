@@ -104,5 +104,31 @@ export default class steamSearch {
     })
   }
 
+  getBadges(userID){
+    return this._$http({
+      method: "GET",
+      url: `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetBadges/v1/?key=${process.env.STEAM_API_KEY}&steamid=${userID}`
+    }).then((res)=>{
+      console.log(res, "getBadges");
+      return res
+    }).catch((err)=>{
+      console.log(err, "getBadges error");
+      return err
+    })
+  }
+
+  getCurrentNumberOfPlayers(gameID){
+    return this._$http({
+      method: "GET",
+      url: `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?key=${process.env.STEAM_API_KEY}&appid=${gameID}`
+    }).then((res)=>{
+      console.log(res, "getCurrentNumberOfPlayers");
+      return res
+    }).catch((err)=>{
+      console.log(err, "getCurrentNumberOfPlayers error");
+      return err
+    })
+  }
+
 
 }

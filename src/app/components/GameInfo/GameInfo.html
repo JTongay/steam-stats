@@ -1,9 +1,10 @@
 <div class="game-info-container">
   <h1 class="game-info-items">{{gameInfo.game.name}}</h1>
   <img ng-src="{{gameInfo.game.header_image}}" alt="" class="game-info-items">
-  <span class="game-info-items">Metacritic: {{gameInfo.game.metacritic.score}}</span>
+  <span class="game-info-items" ng-if="gameInfo.game.metacritic.score">Metacritic: {{gameInfo.game.metacritic.score}}</span>
+  <span class="game-info-items" ng-if="!gameInfo.game.metacritic.score">Metacritic: N/A</span>
   <span class="game-info-items">Release Date: {{gameInfo.game.release_date.date}}</span>
-  <span class="game-info-items">Price: {{gameInfo.game.price_overview.final | currency}}</span>
+  <span class="game-info-items">Price: {{gameInfo.game.price_overview.final/100000 | currency:"$":2}}</span>
 </div>
 <div class="all-achievements">
   <div class="achievements-container" ng-repeat="achievement in gameInfo.gameSchema track by $index">

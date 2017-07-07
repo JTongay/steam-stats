@@ -1,6 +1,12 @@
+<div class="steam-logo-container">
+  <h1 class="steam-stats-title">Steam Stats</h1>
+  <img src="https://steamcommunity-a.akamaihd.net/public/shared/images/responsive/share_steam_logo.png" alt="" class="steam-logo">
+</div>
+
 <div ng-if="home.currentUser" class="home-container">
   <img ng-src="{{home.steamUser.data.response.players[0].avatarfull}}" alt="" class="steam-avatar steam-items">
   <p class="steam-items">Steam Name: {{home.steamUser.data.response.players[0].personaname}}</p>
+  <p class="steam-items" ng-if="home.steamUser.data.response.players[0].realname">Your Name: {{home.steamUser.data.response.players[0].realname}}</p>
   <p class="steam-items">Total Games: {{home.allGames}}</p>
   <p class="steam-items">Total Played Games: {{home.playedGames.length}}</p>
   <button type="button" class="view-games-btn steam-items" ng-click="home.storeGameInfo()">Go Checkout Your Played Games</button>
