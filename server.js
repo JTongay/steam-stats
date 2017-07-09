@@ -4,7 +4,11 @@ const port = process.env.PORT || 3000
 const path = require('path')
 const passport = require('passport')
 const SteamStrategy = require('passport-steam').Strategy
+const BnetStrategy = require('passport-bnet').Strategy;
+const BNET_ID = process.env.BNET_ID
+const BNET_SECRET = process.env.BNET_SECRET
 let loggedInSteamUser = null
+let loggedInBNetUser = null
 require('dotenv').config();
 
 // Middlewares
@@ -40,6 +44,24 @@ passport.use(new SteamStrategy({
   }
 ));
 
+// Use the BnetStrategy within Passport.
+passport.use(new BnetStrategy({
+    clientID: process.env.BNET_ID,
+    clientSecret: process.env.BNET_SECRET,
+    callbackURL: "https://localhost:3000/auth/bnet/callback",
+    region: "us"
+}, function(accessToken, refreshToken, profile, done) {
+    console.log(accessToken);
+    console.log(refreshToken);
+    console.log(profile);
+    loggedInBNetUser = {
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      profile: profile
+    }
+    return done(null, profile);
+}));
+
 
 
 app.get('/auth/steam',
@@ -59,6 +81,21 @@ app.get('/auth/steam/return',
     // Successful authentication, redirect home.
     res.redirect('/');
 });
+
+app.get('/auth/bnet',
+    passport.authenticate('bnet'));
+
+app.get('/auth/bnet/callback',
+    passport.authenticate('bnet', { failureRedirect: '/' }),
+    function(req, res){
+        res.redirect('/');
+});
+
+app.get('/auth/bnet/checkuser', (req, res, next)=>{
+
+  res.json(loggedInBNetUser)
+
+})
 
 app.get('/auth/steam/checkuser', (req, res, next)=>{
 
