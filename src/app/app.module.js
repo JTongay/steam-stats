@@ -11,6 +11,7 @@ import ComponentsModule from './components/components.module'
 import steamSearchService from './services/steamSearch.service'
 import loginService from './services/login.service'
 import userService from './services/user.service'
+import blizzSearchService from './services/blizzSearch.service'
 
 //filters
 import PercentageFilter from './filters/percentage.filter'
@@ -20,6 +21,7 @@ export const AppModule = angular.module('app', [uiRouter, 'ngStorage', Component
        .config(routing)
        .filter('percent', ['$filter',PercentageFilter])
        .service('steamSearchService', steamSearchService)
+       .service('blizzSearchService', blizzSearchService)
        .service('login', loginService)
        .service('user', userService)
        .name
