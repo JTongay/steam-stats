@@ -47,8 +47,7 @@ passport.use(new BnetStrategy({
     clientID: process.env.BNET_ID,
     clientSecret: process.env.BNET_SECRET,
     scope: "wow.profile sc2.profile",
-    provider: "https://us.battle.net/oauth/authorize?client_id=arvchaf3de9qg2vwuszeg45b489vta87&redirect_uri=https%3A%2F%2Fdev.battle.net%2Fio-docs%2Foauth2callback&response_type=code&scope=wow.profile+sc2.profile",
-    callbackURL: "https://localhost:3000/auth/bnet/callback",
+    callbackURL: "http://localhost:3000/auth/bnet/callback",
     region: "us"
 }, function(accessToken, refreshToken, profile, done) {
     console.log(accessToken);
