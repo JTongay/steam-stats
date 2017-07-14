@@ -1,9 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DotenvPlugin = require('webpack-dotenv-plugin');
+const Webpack = require('webpack');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src') + '/app/app.module.js',
+    devtool: 'eval',
+    entry: {
+      // server: 'webpack/hot/dev-server',
+      // page: 'webpack-dev-server/client?http://localhost:3000',
+      home: path.resolve(__dirname, 'src') + '/app/app.module.js',
+    },
     output: {
         path: path.resolve(__dirname, 'dist') + '/app',
         filename: 'bundle.js',
@@ -17,7 +23,8 @@ module.exports = {
       new DotenvPlugin({
         sample: './.env.default',
         path: './.env'
-      })
+      }),
+      new Webpack.HotModuleReplacementPlugin()
     ],
     module: {
         loaders: [

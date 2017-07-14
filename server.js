@@ -9,12 +9,6 @@ let loggedInSteamUser = null
 let loggedInBNetUser = null
 require('dotenv').config();
 
-// Middlewares
-const bodyParser = require('body-parser')
-
-// Use Middlewares
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(express.static('dist'))
 app.use(passport.initialize());
 app.use(passport.session());

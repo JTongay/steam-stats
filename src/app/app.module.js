@@ -2,6 +2,10 @@ import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import 'ngstorage'
 import './app.scss'
+import 'angular-animate'
+import 'angular-aria'
+import 'angular-chart.js'
+
 
 import routing from './routing'
 import AppConfig from './app.config'
@@ -16,7 +20,7 @@ import blizzSearchService from './services/blizzSearch.service'
 //filters
 import PercentageFilter from './filters/percentage.filter'
 
-export const AppModule = angular.module('app', [uiRouter, 'ngStorage', ComponentsModule])
+export const AppModule = angular.module('app', [uiRouter, 'ngStorage', ComponentsModule, 'ngAnimate', 'ngAria', 'chart.js'])
        .component('app', AppConfig)
        .config(routing)
        .filter('percent', ['$filter',PercentageFilter])
